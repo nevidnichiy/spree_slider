@@ -7,7 +7,7 @@
     <%# Indicators %>
     <ol class="carousel-indicators">
       <% slider.each_with_index do |slide, index| %>
-        <li data-target="#carousel-prod-<%= cid %>" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
+        <li data-target="#carousel-slider-<%= cid %>" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
       <% end %>
     </ol>
 
@@ -20,20 +20,21 @@
           <div class="carousel-caption">
             <h3><%= slide.slide_name %></h3>
             <% unless slide.body.blank? %>
-              <p><%= slide.body %>
-                <p>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
+              <p>
+                <%= slide.body %>
+              </p>
+            <% end %>
+          </div>
         </div>
+      <% end %>
+    </div>
 
         <%# Controls %>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carousel-slider-<%= cid %>" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only"><%= t(:previous) %></span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carousel-slider-<%= cid %>" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only"><%= t(:next) %></span>
         </a>
