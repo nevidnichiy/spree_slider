@@ -37,7 +37,22 @@
   </div>
 
   <div class="col-md-6">
+    <%= f.label :position, t(:position) %>
     <%= render 'spree/admin/slides/edit_slider_locations', f: f %>
+  </div>
+
+  <div class="col-md-6">
+    <div class="field">
+      <label for="locale"><%= t(:locale) %></label>
+
+      <%= select_tag(
+        'slide[locale]',
+        options_for_select(available_locales_options, selected: @slide.locale),
+        { include_blank: Spree.t(:all), class: 'form-control' }
+      )  %>
+      <%= hidden_field_tag 'available_locales', available_locales.join(',') %>
+
+    </div>
   </div>
 
   <div class="col-md-12">

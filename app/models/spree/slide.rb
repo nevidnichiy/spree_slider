@@ -11,7 +11,7 @@ class Spree::Slide < ActiveRecord::Base
   validates :name, :image, presence: true, unless: -> { product }
   validates :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
-  scope :published, -> { where(published: true).order('position ASC') }
+  scope :published, -> { where(published: true).and(where("locale = ? or locale = ''", I18n.locale)).order('position ASC') }
   scope :location, ->(location) { joins(:slide_locations).where('spree_slide_locations.name = ?', location) }
   scope :product_slides, -> { published.where.not(product_id: nil).order('position ASC') }
   scope :image_slides, -> { published.where(product_id: nil).order('position ASC') }
